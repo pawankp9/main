@@ -7,19 +7,19 @@ import os
 
 
 # Function to read word file
-@st.cache_data(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 def read_word_content(file_path):
     word_content, file_name_without_extension = read_word_file(file_path)
     return word_content, file_name_without_extension
 
 # Function to generate Excel and return DataFrame
-@st.cache_data(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 def generate_excel_df(word_content, file_name_without_extension):
     df_english = genWordContentToDataframe(word_content, file_name_without_extension)
     return df_english
 
 # Function to translate DataFrame to another language
-@st.cache_data(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 def translate_to_language(df, language, file_name_without_extension):
     df_translated = languageTranslator(df, language, file_name_without_extension)
     return df_translated
