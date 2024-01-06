@@ -13,18 +13,18 @@ def languageTranslator(dataFrameEnglish, language, file_name_without_extension):
         llmResponse = chain.invoke({"language": language, "dataTable": dataFrameEnglish})
 
         llmResponse = llmResponse.content
-        st.write(f"LLMRESPONSE: {llmResponse}")
+        # st.write(f"LLMRESPONSE: {llmResponse}")
 
         data_start_index = llmResponse.find('[')  # Find the index where the JSON data starts
         json_data_string = llmResponse[data_start_index:]  # Extract the JSON data string
 
         # Convert the JSON data string to a list of dictionaries
         llmResponseJSON = json.loads(json_data_string)
-        st.write(f"LLMRESPONSEJSON: {llmResponseJSON}")
+        # st.write(f"LLMRESPONSEJSON: {llmResponseJSON}")
 
         # Create DataFrame
         dataFrameTranslated = pd.DataFrame(llmResponseJSON)
-        st.write(f"DataFrame {dataFrameTranslated}")
+        # st.write(f"DataFrame {dataFrameTranslated}")
 
         # Save DataFrame to Excel
         # dataFrameTranslated.to_csv(file_name_without_extension + "_" + language + ".csv", index=False)
