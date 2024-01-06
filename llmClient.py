@@ -10,21 +10,26 @@ from langchain.prompts.chat import (
     HumanMessagePromptTemplate,
     SystemMessagePromptTemplate,
 )
-import toml
+import streamlit as st
 
 class LLMClient:
     def __init__(self):
         # Initializing the OpenAI Varibales
         # read local .env file
-        # load_dotenv()
+        load_dotenv()
 
         # openai.api_key = os.environ["OPENAI_API_KEY"]
         # openai.api_base = os.environ["OPENAI_API_BASE"]
+        # openai.api_type = os.environ["OPENAI_API_TYPE"]
+        # openai.api_version = os.environ["OPENAI_API_VERSION"]
+        # self.modelname = os.environ.get("modelName")
 
-        config = toml.load("app_config.toml")
+        openai.api_key = st.secrets.OpenAICreds.OPENAI_API_KEY
+        openai.api_base = st.secrets.OpenAICreds.OPENAI_API_BASE
+        openai.api_type = st.secrets.OpenAICreds.OPENAI_API_TYPE
+        openai.api_version = st.secrets.OpenAICreds.OPENAI_API_VERSION
+        self.modelname = st.secrets.PARAMS.modelName
 
-        openai.api_key = config["OpenAICreds"]["OPENAI_API_KEY"]
-        openai.api_base = config["OpenAICreds"]["OPENAI_API_BASE"]
 
     def execute_llm(self, idea_template):
         """
@@ -46,7 +51,7 @@ class LLMClient:
             [system_message_prompt, human_message_prompt]
         )
 
-        chat = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+        chat = ChatOpenAI(temperature=0, engine=self.modelname)
         chain = chat_prompt | chat
         
         return chain

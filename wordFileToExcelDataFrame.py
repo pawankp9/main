@@ -6,24 +6,23 @@ import openai
 from prompt import *
 from llmClient import LLMClient
 import pandas as pd
-import toml
-
+import streamlit as st
 
 # Load environment variables
-# load_dotenv()
+load_dotenv()
 
 # openai.api_key = os.environ.get("OPENAI_API_KEY")
 # openai.api_base = os.environ.get("OPENAI_API_BASE")
+# openai.api_type = os.environ["OPENAI_API_TYPE"]
+# openai.api_version = os.environ["OPENAI_API_VERSION"]
 # modelname = os.environ.get("modelName")
 
-config = toml.load("app_config.toml")
 
-openai.api_key = config["OpenAICreds"]["OPENAI_API_KEY"]
-openai.api_base = config["OpenAICreds"]["OPENAI_API_BASE"]
-modelname = config["PARAMS"]["modelName"]
-print(f"openai.api_key: {openai.api_key}")
-print(f"openai.api_base: {openai.api_base}")
-print(f"ModelName: {modelname}")
+openai.api_key = st.secrets.OpenAICreds.OPENAI_API_KEY
+openai.api_base = st.secrets.OpenAICreds.OPENAI_API_BASE
+openai.api_type = st.secrets.OpenAICreds.OPENAI_API_TYPE
+openai.api_version = st.secrets.OpenAICreds.OPENAI_API_VERSION
+modelname = st.secrets.PARAMS.modelName
 
 # language = 'spanish'
 

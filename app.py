@@ -3,6 +3,8 @@ import pandas as pd
 from readWordFile import read_word_file
 from wordFileToExcelDataFrame import genWordContentToDataframe
 from EnglishToLanguageTranslator import languageTranslator
+import os
+
 
 # Function to read word file
 @st.cache(allow_output_mutation=True)
