@@ -28,8 +28,9 @@ def languageTranslator(dataFrameEnglish, language, file_name_without_extension):
         # Save DataFrame to Excel
         # dataFrameTranslated.to_csv(file_name_without_extension + "_" + language + ".csv", index=False)
         print(f"[SUCCESS]: {language} Version Generated and saved.")
-
         return dataFrameTranslated
+    
     except Exception as e:
         print(f"[ERROR]: {e}")
-        return False
+        dataFrameTranslated = pd.DataFrame([])
+        return dataFrameTranslated
