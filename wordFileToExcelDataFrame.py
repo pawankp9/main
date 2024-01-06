@@ -6,17 +6,26 @@ import openai
 from prompt import *
 from llmClient import LLMClient
 import pandas as pd
+import toml
 
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
-openai.api_key = os.environ.get("OPENAI_API_KEY")
-openai.api_base = os.environ.get("OPENAI_API_BASE")
-modelname = os.environ.get("modelName")
+# openai.api_key = os.environ.get("OPENAI_API_KEY")
+# openai.api_base = os.environ.get("OPENAI_API_BASE")
+# modelname = os.environ.get("modelName")
 
-language = 'spanish'
+config = toml.load("app_config.toml")
 
+openai.api_key = config["OpenAICreds"]["OPENAI_API_KEY"]
+openai.api_base = config["OpenAICreds"]["OPENAI_API_BASE"]
+modelname = config["PARAMS"]["modelName"]
+print(f"openai.api_key: {openai.api_key}")
+print(f"openai.api_base: {openai.api_base}")
+print(f"ModelName: {modelname}")
+
+# language = 'spanish'
 
 
 def genWordContentToDataframe(wordContent, file_name_without_extension):
@@ -35,9 +44,13 @@ def genWordContentToDataframe(wordContent, file_name_without_extension):
         # Save DataFrame to Excel
         # dataFrameEnglish.to_csv(file_name_without_extension + "_English.csv", index=False)
         print(f"[SUCCESS]: English Version Generated and saved.")
+        return dataFrameEnglish
 
     except Exception as e:
         print(f"[ERROR]: {e}")
+        print(f"[FAILURE]: Unable to Generate English Version.")
+        dataFrameEnglish = []
+        return dataFrameEnglish
 
-    return dataFrameEnglish
+    
 

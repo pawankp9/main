@@ -10,15 +10,21 @@ from langchain.prompts.chat import (
     HumanMessagePromptTemplate,
     SystemMessagePromptTemplate,
 )
+import toml
 
 class LLMClient:
     def __init__(self):
         # Initializing the OpenAI Varibales
         # read local .env file
-        load_dotenv()
+        # load_dotenv()
 
-        openai.api_key = os.environ["OPENAI_API_KEY"]
-        openai.api_base = os.environ["OPENAI_API_BASE"]
+        # openai.api_key = os.environ["OPENAI_API_KEY"]
+        # openai.api_base = os.environ["OPENAI_API_BASE"]
+
+        config = toml.load("app_config.toml")
+
+        openai.api_key = config["OpenAICreds"]["OPENAI_API_KEY"]
+        openai.api_base = config["OpenAICreds"]["OPENAI_API_BASE"]
 
     def execute_llm(self, idea_template):
         """

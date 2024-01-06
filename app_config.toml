@@ -1,0 +1,8 @@
+# app_config.toml
+
+[OpenAICreds]
+OPENAI_API_KEY = "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"
+OPENAI_API_BASE = "https://api.openai.com/v1/"
+
+[PARAMS]
+modelName = "gpt-3.5-turbo"
