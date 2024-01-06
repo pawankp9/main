@@ -24,8 +24,6 @@ openai.api_type = st.secrets.OpenAICreds.OPENAI_API_TYPE
 openai.api_version = st.secrets.OpenAICreds.OPENAI_API_VERSION
 modelname = st.secrets.PARAMS.modelName
 
-# language = 'spanish'
-
 
 def genWordContentToDataframe(wordContent, file_name_without_extension):
 
