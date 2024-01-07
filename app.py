@@ -4,6 +4,7 @@ from readWordFile import read_word_file
 from wordFileToExcelDataFrame import genWordContentToDataframe
 from EnglishToLanguageTranslator import languageTranslator
 from uploadReadFiles import uploadFiles
+from unStructuredFormat import unStructuredData
 
 # Function to read word file
 @st.cache(allow_output_mutation=True)
@@ -40,16 +41,17 @@ def lanSelection():
         # You may choose to return a default value or None in this case
         return None
 
+
 # Streamlit app
 st.title("Language Conversion App")
 
 # File upload
-uploaded_file = st.file_uploader("Choose your Word Files and Press OK", type=['docx'], accept_multiple_files=False)
+uploaded_file = st.file_uploader("Choose your Word Files and Press OK", type=['pdf','docx'], accept_multiple_files=False)
 
 if uploaded_file is not None:
     # uploaded_file = "uploadedData/" + str(uploaded_file.name)
     word_content = uploadFiles(uploaded_file)
-    file_name_without_extension = "DummmyName"
+    file_name_without_extension = uploaded_file.name
 
     # Read Word content
     # with st.spinner(f"Processing your word file ..."):

@@ -1,5 +1,7 @@
 import streamlit as st
 from docx import Document
+import PyPDF2
+
 
 def uploadFiles(uploaded_file):
     # Check if a file is uploaded
@@ -15,9 +17,18 @@ def uploadFiles(uploaded_file):
             for paragraph in paragraphs:
                 fileContent += paragraph
             return fileContent
+        
+        elif uploaded_file.type == "application/pdf":
+            # Read PDF document
+            pdf_reader = PyPDF2.PdfReader(uploaded_file)
+            for page_num in range(len(pdf_reader.pages)):
+                page = pdf_reader.pages[page_num]
+                fileContent += page.extract_text()
+            return fileContent
         else:
             st.warning("Unsupported file format. Please upload a CSV, Excel, or Word file.")
             return fileContent
     else:
         st.info("Please upload a file.")
+        fileContent = ""
         return fileContent
