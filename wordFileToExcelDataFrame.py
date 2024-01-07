@@ -24,19 +24,19 @@ def genWordContentToDataframe(wordContent, file_name_without_extension):
         print("[INFO]: Generating the English version table ...")
         chain = LLMClient().execute_llm(wordToExcelPrompt)
         llmResponse = chain.invoke({"data": wordContent})
-        st.write(f"\nSTEP1: LLMRESPONSE: {llmResponse}")
-        print(f"\nSTEP1: LLMRESPONSE: {llmResponse}")
+        # st.write(f"\nSTEP1: LLMRESPONSE: {llmResponse}")
+        # print(f"\nSTEP1: LLMRESPONSE: {llmResponse}")
 
 
         llmResponse = llmResponse.content
         llmResponseJSON = json.loads(llmResponse)
-        st.write(f"\nSTEP2: llmResponseJSON: {llmResponseJSON}")
-        print(f"\nSTEP2: llmResponseJSON: {llmResponseJSON}")
+        # st.write(f"\nSTEP2: llmResponseJSON: {llmResponseJSON}")
+        # print(f"\nSTEP2: llmResponseJSON: {llmResponseJSON}")
 
         # Create DataFrame
         dataFrameEnglish = pd.DataFrame(llmResponseJSON)
-        st.write(f"\nSTEP3: dataFrameEnglish: {dataFrameEnglish}")
-        print(f"\nSTEP3: dataFrameEnglish: {dataFrameEnglish}")
+        # st.write(f"\nSTEP3: dataFrameEnglish: {dataFrameEnglish}")
+        # print(f"\nSTEP3: dataFrameEnglish: {dataFrameEnglish}")
 
         # Save DataFrame to Excel
         # dataFrameEnglish.to_csv(file_name_without_extension + "_English.csv", index=False)

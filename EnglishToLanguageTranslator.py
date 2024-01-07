@@ -14,12 +14,12 @@ def languageTranslator(dataFrameEnglish, language, file_name_without_extension):
         # llmResponse = chain.invoke({"dataTable": dataFrameEnglish, "language": language, "wordToExcelPrompt": wordToExcelPrompt})
 
         llmResponse = llmResponse.content
-        st.write(f"\nSTEP1: LLMRESPONSE: {llmResponse}")
+        # st.write(f"\nSTEP1: LLMRESPONSE: {llmResponse}")
 
         data_start_index = llmResponse.find('[')  # Find the index where the JSON data starts
         json_data_string = llmResponse[data_start_index:]  # Extract the JSON data string
-        st.write(f"\nSTEP2: json_data_string: {json_data_string}")
-        print(f"A-DATA-TYPE: {type(json_data_string)}")
+        # st.write(f"\nSTEP2: json_data_string: {json_data_string}")
+        # print(f"A-DATA-TYPE: {type(json_data_string)}")
 
         # Convert the string to a list
         data_list = eval(json_data_string   )
@@ -35,7 +35,7 @@ def languageTranslator(dataFrameEnglish, language, file_name_without_extension):
         # Create DataFrame
         dataFrameTranslated = pd.DataFrame(data, columns=columns)
         # dataFrameTranslated = pd.DataFrame([json_data_string])
-        st.write(f"\nSTEP4: llmResponseJSON: {dataFrameTranslated}")
+        # st.write(f"\nSTEP4: llmResponseJSON: {dataFrameTranslated}")
 
         # Save DataFrame to Excel
         # dataFrameTranslated.to_csv(file_name_without_extension + "_" + language + ".csv", index=False)
