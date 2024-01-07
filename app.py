@@ -49,7 +49,7 @@ uploaded_file = st.file_uploader("Choose your Word Files and Press OK", type=['d
 if uploaded_file is not None:
     # uploaded_file = "uploadedData/" + str(uploaded_file.name)
     word_content = uploadFiles(uploaded_file)
-    file_name_without_extension = "DummmyName"
+    file_name_without_extension = uploaded_file.name
 
     # Read Word content
     # with st.spinner(f"Processing your word file ..."):
