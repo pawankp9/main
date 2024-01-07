@@ -3,6 +3,7 @@ import pandas as pd
 from readWordFile import read_word_file
 from wordFileToExcelDataFrame import genWordContentToDataframe
 from EnglishToLanguageTranslator import languageTranslator
+from uploadReadFiles import uploadFiles
 
 # Function to read word file
 @st.cache(allow_output_mutation=True)
@@ -46,11 +47,13 @@ st.title("Language Conversion App")
 uploaded_file = st.file_uploader("Choose your Word Files and Press OK", type=['docx'], accept_multiple_files=False)
 
 if uploaded_file is not None:
-    uploaded_file = "uploadedData/" + str(uploaded_file.name)
+    # uploaded_file = "uploadedData/" + str(uploaded_file.name)
+    word_content = uploadFiles(uploaded_file)
+    file_name_without_extension = "DummmyName"
 
     # Read Word content
-    with st.spinner(f"Processing your word file ..."):
-        word_content, file_name_without_extension = read_word_content(uploaded_file)
+    # with st.spinner(f"Processing your word file ..."):
+    #     word_content, file_name_without_extension = read_word_content(uploaded_file)
 
     # Display original content
     with st.spinner(f"LOADING and EXTRACTING content from the file: {file_name_without_extension} ..."):
