@@ -4,7 +4,6 @@ from readWordFile import read_word_file
 from wordFileToExcelDataFrame import genWordContentToDataframe
 from EnglishToLanguageTranslator import languageTranslator
 from uploadReadFiles import uploadFiles
-from unStructuredFormat import unStructuredData
 
 # Function to read word file
 @st.cache(allow_output_mutation=True)
