@@ -41,7 +41,7 @@ def lanSelection():
         return None
 
 # Streamlit app
-st.title("Language Conversion App")
+st.title("Language Conversion App-MAIN")
 
 # File upload
 uploaded_file = st.file_uploader("Choose your Word Files and Press OK", type=['docx'], accept_multiple_files=False)
