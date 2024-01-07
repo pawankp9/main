@@ -7,9 +7,9 @@ from uploadReadFiles import uploadFiles
 
 # Function to read word file
 @st.cache(allow_output_mutation=True)
-def read_word_content(file_path):
-    word_content, file_name_without_extension = read_word_file(file_path)
-    return word_content, file_name_without_extension
+# def read_word_content(file_path):
+#     word_content, file_name_without_extension = read_word_file(file_path)
+#     return word_content, file_name_without_extension
 
 # Function to generate Excel and return DataFrame
 @st.cache(allow_output_mutation=True)
