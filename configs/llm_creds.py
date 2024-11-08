@@ -13,7 +13,7 @@ def loadOpeanAICreds():
         openai.api_version= os.environ["OPENAI_API_VERSION"]
     except Exception as e:
         print("Value Not found")
-        azure = False
+        azure = True
 
     if azure is True:
         print(f"---------- Working with AZURE ----------")

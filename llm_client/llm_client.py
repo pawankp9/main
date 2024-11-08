@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 from langchain.prompts import ChatPromptTemplate
-from langchain.chat_models import AzureChatOpenAI
+from langchain_community.chat_models import AzureChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
