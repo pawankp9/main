@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 from langchain.prompts import ChatPromptTemplate
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import AzureChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
@@ -43,7 +43,7 @@ class LLMClient:
             [system_message_prompt, human_message_prompt]
         )
 
-        chat = ChatOpenAI(temperature=0, engine=self.modelName)
+        chat = AzureChatOpenAI(temperature=0, model=self.modelName)
         chain = chat_prompt | chat
         
         return chain
